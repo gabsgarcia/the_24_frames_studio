@@ -1,0 +1,14 @@
+/* app/assets/stylesheets/videos.scss */
+.card {
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+}
+
+.video-thumbnail {
+  overflow: hidden;
+  border-radius: 4px 4px 0 0;
+}

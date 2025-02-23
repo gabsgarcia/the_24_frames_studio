@@ -1,0 +1,30 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <div class="card">
+        <div class="ratio ratio-16x9">
+          <% if @video.video_file.attached? %>
+            <video controls>
+              <source src="<%= url_for(@video.video_file) %>" type="<%= @video.video_file.content_type %>">
+            </video>
+          <% end %>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title"><%= @video.title %></h1>
+          <p class="card-text"><%= @video.description %></p>
+          <span class="badge bg-primary mb-3"><%= @video.category_name %></span>
+
+          <div class="mt-4">
+            <%= link_to 'Edit', edit_video_path(@video), class: 'btn btn-primary' %>
+            <%= link_to 'Back', videos_path, class: 'btn btn-secondary' %>
+            <%= link_to 'Delete',
+                        video_path(@video),
+                        method: :delete,
+                        data: { turbo_confirm: 'Are you sure?' },
+                        class: 'btn btn-danger' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -51,6 +51,13 @@ gem "font-awesome-sass", "~> 6.1"
 gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
 
+gem 'aws-sdk-s3', require: false
+gem 'pg_search'                 # For advanced search
+gem 'acts_as_list'             # For manual ordering
+gem 'friendly_id', '~> 5.5'    # For nice URLs
+gem 'image_processing'         # For thumbnail processing
+gem "font-awesome-sass", "~> 6.1"
+
 group :development, :test do
   gem "dotenv-rails"
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -66,6 +73,7 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  gem "hotwire-livereload"
 
   gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
 end

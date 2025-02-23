@@ -1,2 +1,18 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="hero-section" data-controller="hero">
+  <%= render 'shared/featured_video' %>
+</div>
+
+<div class="container"> <!-- Add container here -->
+  <div class="video-grid"
+       data-controller="video-grid"
+       data-action="scroll@window->video-grid#handleScroll">
+
+    <%= render 'shared/category_filters' %>
+
+    <div class="row" data-video-grid-target="grid">
+      <% @videos.each do |video| %>
+        <%= render 'videos/grid_item', video: video %>
+      <% end %>
+    </div>
+  </div>
+</div>

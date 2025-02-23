@@ -10,3 +10,49 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+;
+
+// Hero video styles (add these new styles)
+.hero-section {
+  width: 100%;
+  max-width: 100vw;
+  height: auto;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+
+.hero-video-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+// Keep your existing styles for the card videos
+.video-player {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+// Video card styles (your existing styles - keep these)
+.card .ratio-16x9 {
+  overflow: hidden;
+  background-color: #000;
+}
+
+.card .ratio-16x9 video {
+  object-fit: cover;
+}
+
+.card {
+  transition: transform 0.2s;
+  &:hover {
+    transform: translateY(-5px);
+  }
+}

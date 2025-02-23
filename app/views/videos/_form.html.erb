@@ -1,0 +1,33 @@
+# app/views/videos/_form.html.erb
+<%= simple_form_for @video do |f| %>
+  <% if @video.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(@video.errors.count, "error") %> prohibited this video from being saved:</h4>
+      <ul>
+        <% @video.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-inputs">
+    <%= f.input :title %>
+    <%= f.input :description %>
+    <%= f.input :category, collection: Video.categories.keys.map { |c| [c.titleize, c] } %>
+    <%= f.input :position,
+                hint: 'Lower numbers appear first (optional)',
+                input_html: { min: 1 } %>
+    <%= f.input :video_file,
+                as: :file,
+                input_html: {
+                  accept: Video::VALID_VIDEO_TYPES.join(',')
+                },
+                hint: "Maximum size: #{number_to_human_size(Video::MAX_VIDEO_SIZE)}. Formats: MP4, MOV, AVI" %>
+  </div>
+
+  <div class="form-actions mt-4">
+    <%= f.button :submit, class: 'btn btn-primary' %>
+    <%= link_to 'Back', videos_path, class: 'btn btn-secondary ms-2' %>
+  </div>
+<% end %>

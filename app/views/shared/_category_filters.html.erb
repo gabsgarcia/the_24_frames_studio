@@ -1,0 +1,17 @@
+<div class="category-filters mb-4" data-video-grid-target="filter">
+  <%= link_to "All", "#",
+      class: "btn btn-outline-primary me-2",
+      data: {
+        action: "click->video-grid#filter",
+        category: "all"
+      } %>
+
+  <% Video.categories.keys.each do |category| %>
+    <%= link_to category.titleize, "#",
+        class: "btn btn-outline-primary me-2",
+        data: {
+          action: "click->video-grid#filter",
+          category: category
+        } %>
+  <% end %>
+</div>

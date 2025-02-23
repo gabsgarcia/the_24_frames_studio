@@ -1,0 +1,21 @@
+<div class="grid-item col-md-4 mb-4" data-category="<%= video.category %>">
+  <div class="card h-100"
+       data-controller="video-preview"
+       data-action="mouseenter->video-preview#mouseEnter mouseleave->video-preview#mouseLeave">
+    <div class="video-thumbnail ratio ratio-16x9">
+      <% if video.video_file.attached? %>
+        <video class="card-img-top"
+               muted
+               data-video-preview-target="video"
+               preload="metadata">
+          <source src="<%= video.video_url %>" type="<%= video.video_file.content_type %>">
+        </video>
+      <% end %>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"><%= video.title %></h5>
+      <p class="card-text"><%= truncate(video.description, length: 100) %></p>
+      <span class="badge bg-primary"><%= video.category_name %></span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<% featured_video = Video.ordered.first %>
+<% if featured_video&.video_file&.attached? %>
+  <div class="hero-video-container">
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="<%= url_for(featured_video.video_file) %>" type="<%= featured_video.video_file.content_type %>">
+    </video>
+    <div class="hero-content">
+      <h1 class="hero-title"><%= featured_video.title %></h1>
+      <p class="hero-description"><%= featured_video.description %></p>
+    </div>
+  </div>
+<% end %>
