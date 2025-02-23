@@ -56,7 +56,7 @@ gem 'pg_search'                 # For advanced search
 gem 'acts_as_list'             # For manual ordering
 gem 'friendly_id', '~> 5.5'    # For nice URLs
 gem 'image_processing'         # For thumbnail processing
-gem "font-awesome-sass", "~> 6.1"
+
 
 group :development, :test do
   gem "dotenv-rails"

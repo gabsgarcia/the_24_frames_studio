@@ -1,15 +1,15 @@
 <div class="grid-item col-md-4 mb-4" data-category="<%= video.category %>">
   <div class="card h-100"
-       data-controller="video-preview"
-       data-action="mouseenter->video-preview#mouseEnter mouseleave->video-preview#mouseLeave">
-    <div class="video-thumbnail ratio ratio-16x9">
+      data-controller="video-preview"
+      data-action="mouseenter->video-preview#mouseEnter mouseleave->video-preview#mouseLeave">
+    <div class="video-thumbnail ratio ratio-16x9 position-relative">
       <% if video.video_file.attached? %>
-        <video class="card-img-top"
-               muted
-               data-video-preview-target="video"
-               preload="metadata">
+        <video class="card-img-top" muted data-video-preview-target="video">
           <source src="<%= video.video_url %>" type="<%= video.video_file.content_type %>">
         </video>
+        <div class="play-overlay">
+          <i class="fas fa-play"></i>
+        </div>
       <% end %>
     </div>
     <div class="card-body">

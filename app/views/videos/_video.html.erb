@@ -1,0 +1,30 @@
+<div class="col-md-4">
+  <div class="card h-100"
+      data-controller="video-preview"
+      data-action="mouseenter->video-preview#mouseEnter mouseleave->video-preview#mouseLeave">
+    <div class="video-thumbnail ratio ratio-16x9">
+      <% if video.video_file.attached? %>
+        <video class="card-img-top"
+          muted
+          data-video-preview-target="video"
+          preload="metadata">
+          <source src="<%= url_for(video.video_file) %>" type="<%= video.video_file.content_type %>">
+        </video>
+      <% end %>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"><%= video.title %></h5>
+      <p class="card-text"><%= truncate(video.description, length: 100) %></p>
+      <span class="badge bg-primary"><%= video.category_name %></span>
+    </div>
+    <div class="card-footer bg-transparent">
+      <%= link_to 'View', video_path(video), class: 'btn btn-sm btn-primary' %>
+      <%= link_to 'Edit', edit_video_path(video), class: 'btn btn-sm btn-secondary' %>
+      <%= link_to 'Delete',
+                  video_path(video),
+                  method: :delete,
+                  data: { turbo_confirm: 'Are you sure?' },
+                  class: 'btn btn-sm btn-danger' %>
+    </div>
+  </div>
+</div>
