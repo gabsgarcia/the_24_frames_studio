@@ -1,5 +1,11 @@
-# app/views/videos/_form.html.erb
-<%= simple_form_for @video do |f| %>
+<%= simple_form_for @video, html: { 
+    data: { 
+      controller: "direct-upload",
+      direct_upload_target: "form",
+      use_cloudinary: Rails.env.production?.to_s
+    } 
+  } do |f| %>
+  
   <% if @video.errors.any? %>
     <div class="alert alert-danger">
       <h4><%= pluralize(@video.errors.count, "error") %> prohibited this video from being saved:</h4>
@@ -18,12 +24,33 @@
     <%= f.input :position,
                 hint: 'Lower numbers appear first (optional)',
                 input_html: { min: 1 } %>
-    <%= f.input :video_file,
-                as: :file,
-                input_html: {
-                  accept: Video::VALID_VIDEO_TYPES.join(',')
-                },
-                hint: "Maximum size: #{number_to_human_size(Video::MAX_VIDEO_SIZE)}. Formats: MP4, MOV, AVI" %>
+                
+    <div class="mb-3">
+      <%= f.label :video_file %>
+      <%= f.input :video_file,
+                  label: false,
+                  as: :file,
+                  input_html: {
+                    accept: Video::VALID_VIDEO_TYPES.join(','),
+                    data: { 
+                      direct_upload_target: "input",
+                      direct_upload_url: rails_direct_uploads_url
+                    }
+                  },
+                  hint: "Maximum size: #{number_to_human_size(Video::MAX_VIDEO_SIZE)}. Formats: MP4, MOV, AVI" %>
+      
+      <div class="mt-2">
+        <div class="progress">
+          <div class="progress-bar" 
+               role="progressbar" 
+               data-direct-upload-target="progress" 
+               style="width: 0%"></div>
+        </div>
+        <small data-direct-upload-target="status"></small>
+      </div>
+      
+      <div data-direct-upload-target="preview" class="mt-3"></div>
+    </div>
   </div>
 
   <div class="form-actions mt-4">

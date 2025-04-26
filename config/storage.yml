@@ -1,24 +1,20 @@
-test:
-  service: Disk
-  root: <%= Rails.root.join("tmp/storage") %>
+# test:
+#   service: Disk
+#   root: <%= Rails.root.join("tmp/storage") %>
 
-local:
-  service: Disk
-  root: <%= Rails.root.join("storage") %>
+# local:
+#   service: Disk
+#   root: <%= Rails.root.join("storage") %>
 
+# amazon:
+#   service: S3
+#   access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
+#   secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
+#   region: <%= ENV['AWS_REGION'] %>
+#   bucket: <%= ENV['AWS_BUCKET'] %>
 
 # cloudinary:
 #   service: Cloudinary
-#   cloud_name: <%= ENV['CLOUDINARY_CLOUD_NAME'] %>
-#   api_key: <%= ENV['CLOUDINARY_API_KEY'] %>
-#   api_secret: <%= ENV['CLOUDINARY_API_SECRET'] %>
-
-amazon:
-  service: S3
-  access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
-  secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
-  region: <%= ENV['AWS_REGION'] %>
-  bucket: <%= ENV['AWS_BUCKET'] %>
 
 local:
   service: Disk
