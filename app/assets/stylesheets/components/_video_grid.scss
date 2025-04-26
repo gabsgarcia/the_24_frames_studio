@@ -16,19 +16,14 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0,0,0,0.3);
+  background: rgba(0, 0, 0, 0.2); /* More transparent background */
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
+  opacity: 0.7; /* Make it semi-transparent by default */
   transition: opacity 0.2s;
-
-  i {
-    color: white;
-    font-size: 3rem;
-  }
 }
 
 .card:hover .play-overlay {
-  opacity: 1;
+  opacity: 0.3; /* Make even more transparent on hover */
 }

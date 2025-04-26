@@ -10,9 +10,14 @@ class VideosController < ApplicationController
 
     # Search if query provided
     @videos = @videos.search_by_title_and_description(params[:query]) if params[:query].present?
+    
+    # Enable fragment caching with proper etag
+    fresh_when etag: @videos, last_modified: @videos.maximum(:updated_at)
   end
 
   def show
+    # HTTP caching for video show pages
+    fresh_when(@video, etag: @video, last_modified: @video.updated_at, public: true)
   end
 
   def new
@@ -51,6 +56,6 @@ class VideosController < ApplicationController
   end
 
   def video_params
-    params.require(:video).permit(:title, :description, :category, :video_file, :position)
+    params.require(:video).permit(:title, :description, :category, :video_file, :position, :cloudinary_id)
   end
 end

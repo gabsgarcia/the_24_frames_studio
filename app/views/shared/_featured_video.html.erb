@@ -9,4 +9,13 @@
       <p class="hero-description"><%= featured_video.description %></p>
     </div>
   </div>
+<% else %>
+  <!-- Fallback when no video is available -->
+  <div class="hero-placeholder text-center py-5">
+    <h1>Welcome to Your Video Portfolio</h1>
+    <p class="lead">Upload your first video to see it featured here</p>
+    <% if user_signed_in? %>
+      <%= link_to 'Upload Video', new_video_path, class: 'btn btn-primary mt-3' %>
+    <% end %>
+  </div>
 <% end %>
