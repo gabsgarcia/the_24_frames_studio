@@ -1,10 +1,11 @@
 <% cache video do %>
   <div class="grid-item col-md-4 mb-4" data-category="<%= video.category %>">
-    <div class="card h-100" data-controller="video-preview" data-action="mouseenter->video-preview#mouseEnter mouseleave->video-preview#mouseLeave">
+    <div class="card h-100" 
+         data-video-url="<%= video.video_file.attached? ? url_for(video.video_file) : '' %>">
       <div class="video-thumbnail ratio ratio-16x9 position-relative">
         <% if video.video_file.attached? %>
           <!-- Poster image that shows by default -->
-          <div class="poster-image position-absolute top-0 start-0 w-100 h-100 bg-dark d-flex align-items-center justify-content-center" data-video-preview-target="poster">
+          <div class="poster-image position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
             <i class="fas fa-play text-white fs-1"></i>
           </div>
           
@@ -12,14 +13,18 @@
           <video 
             class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover" 
             muted 
+            playsinline
             preload="metadata" 
-            data-video-preview-target="video"
-            style="opacity: 0;"
+            style="opacity: 0; transition: opacity 0.4s ease;"
           >
             <source src="<%= url_for(video.video_file) %>" type="<%= video.video_file.content_type %>">
           </video>
           
-          <span class="duration position-absolute bottom-0 end-0 bg-dark text-white px-2 py-1 m-2 rounded z-index-1">2:56</span>
+          <span class="duration position-absolute bottom-0 end-0 text-white px-2 py-1 m-2 rounded">...</span>
+        <% else %>
+          <div class="w-100 h-100 bg-secondary d-flex align-items-center justify-content-center">
+            <span class="text-white">No video</span>
+          </div>
         <% end %>
       </div>
       <div class="card-body">
